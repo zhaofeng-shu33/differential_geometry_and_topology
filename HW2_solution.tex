@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage[thehwcnt=2]{iidef}
+%\usepackage[left=2cm,right=2cm]{geometry}%for printing,broken for fancyhdr?
+\usepackage{mathtools}
+\usepackage{esdiff}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclareMathOperator\sgn{sgn}
+\def\emptyset{\varnothing}
+\thecourseinstitute{HIT,Shenzhen}%Harbin Institute of Technology
+\thecoursename{Differential Geometry and Topology}
+\theterm{Spring 2018}
+\begin{document}
+\courseheader
+\name{zhaofeng-shu33}
+\begin{enumerate}
+\item How many topologies could be defined on the two-element set $X=\{a,b\}$?
+\begin{solution}
+\quad\\
+\begin{itemize}
+\item $T=\{X,\emptyset\}$
+\item $T=\{X,\emptyset,\{a\}\}$
+\item $T=\{X,\emptyset,\{b\}\}$
+\item $T=\{X,\emptyset,\{a\},\{b\}\}$
+\end{itemize}
+\end{solution}
+\item Find the closure of $\{(x,\sin \frac{1}{x}| 0<x\leq 1)\}$ in the 2-dimensional Euclidean space $\mathbb{R}^2$
+\begin{proof}% not necessary
+We show that the closure $\bar{A}$ of $A=\{(x,\sin \frac{1}{x}| 0<x\leq 1)\}$ is $ \{(0,y)|-1\leq y\leq 1\}\cup A$.
+For $(0,y),\abs{y}\leq 1$, we can find $(x_n,\sin\frac{1}{x_n})$, where $x_n=\frac{1}{2\pi n +\arcsin y}$ such that $(x_n,\sin {1\over x_n}) \to (0,y)$.
+\end{proof}
+
+\item Prove that $\mathbb{R}^2\backslash\{(0,0)\}$ (as a subspace of $\mathbb{R}^2$) and $\{(x,y,z)|x^2+y^2=1\}$(as a subspace of $\mathbb{R}^2$) are homeomorphic.
+\begin{proof}
+We can construct a homeomorphic mapping from  $(0,\infty)$ to $(-\infty,+\infty)$, such as $x\to x-\frac{1}{x}$. Then consider the polar coordinate representation of the plane without the origin. For $(r,\theta)  \in \mathbb{R}^2\backslash\{(0,0)\}$, use mapping $(\cos\theta,\sin\theta,r-\frac{1}{r})$ and we get a point on the cylinder $\{(x,y,z)|x^2+y^2=1\}$. It is easy to check that the mapping is a homeomorphic.
+\end{proof}
+\item Let $(X,d)$ be a metric space and $A\subseteq X$ a closed subset. Define $f:  X\to \mathbb{R}$ by $f(x) = \inf_{a\in A} d(x,a)$. Prove that $f$ is continuous and that $f(x)=0$ if and only if $x\in A$.
+\begin{proof}
+Suppose $V$ is open, then for any $x\in f^{-1}(V),f(x)\in V$, we can find $\epsilon$ such that $(f(x)-\epsilon,f(x)+\epsilon)\subseteq V$.
+We show that $B(x,{1\over 2}\epsilon) \subseteq f^{-1}(V)$. Indeed, $\forall y \in B(x,{1\over 2}\epsilon),d(y,x)<{1 \over 2}\epsilon$. Then $d(y,a)\leq d(y,x)+d(x,a)<{1 \over 2}\epsilon+d(x,a) \Rightarrow f(y)=\inf_{a\in A}d(y,a)\leq {1\over 2}\epsilon+d(x,a) \Rightarrow f(y)\leq {1\over 2}\epsilon+\inf_{a\in A}d(x,a)<\epsilon+f(x)$. Exchange the position of $x$ and $y$: $f(x)< \epsilon+f(y) \Rightarrow f(y)\in (f(x)-\epsilon,f(x)+\epsilon)\subseteq V$.
+Therefore $f$ is continuous.
+
+If $x\in A$, $f(x)=0$; if $f(x)=0$, there exists $\{y_n\}$ such that $d(x,y_n)\to 0$, and $x\in \bar{A}=A$
+\end{proof}
+\item A topological space $X$ is called separable if there is a countable dense subset $A$. Prove that if two topological spaces $X_1,X_2$ are separable, then the product $X_1\times X_2$ is also separable.
+\begin{proof}
+Let $A_1,A_2$ be dense countable subset of $X_1,X_2$ respectively. $A_1\times A_2$ is countable. Below we show that $\overline{A_1\times A_2}=X_1\times X_2$.
+We consider $(x_1,x_2) \notin (A_1,A_2)$ and assume $x_1\notin A_1$ for example. For $(x_1,x_2)\in X_1\times X_2$ and an open set $V\in X_1\times X_2$ covering $(x_1,x_2)$. $V=\bigcup U_i\times V_i$, where $U_i\in T_{X_1},V_i \in T_{X_2}$. Then $(x_1,x_2)\in U_i\times V_i$ for some $i$. Since $A_1$ is dense in $X_1$ and $x_1\notin A_1$, $U_i\backslash\{x_1\}\cap A_1\neq \emptyset$. $U_i\times V_i\backslash\{(x_1,x_2)\}\cap A_1\times A_2 \neq \emptyset\Rightarrow V\backslash\{(x_1,x_2)\}\cap A_1\times A_2 \neq \emptyset\Rightarrow (x_1,x_2)\in (A_1\times A_2)'$. Therefore,  $\overline{A_1\times A_2}=X_1\times X_2$.
+\end{proof}
+\end{enumerate}
+\end{document}
+

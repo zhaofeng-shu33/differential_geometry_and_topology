@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\inner{\langle}{\rangle}
+\def\emptyset{\varnothing}
+\def\QEDclosed{\mbox{\rule[0pt]{1.3ex}{1.3ex}}}%hacked from IEEEtran.cls
+\def\proofname{\normalfont \bfseries Proof}
+\renewcommand\qedsymbol{\QEDclosed}
+% resolve formula numbering
+% all styles are plain, which is not optimal
+% the official amsthm doc said we should use <definition> style for Definition,Example and Exercise.
+\newtheorem{example}{Example}[section] % parent counter setting
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{theorem}{Theorem}[section]
+\usepackage{xpatch}%remove the dot after theorem env
+\makeatletter
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+\usepackage{enumitem}
+\begin{document}
+% 
+\title{Lecture 3 remark: Compactness and Connectedness}
+\author{zhaofeng-shu33}
+\maketitle
+\section{Compactness: definitions and examples}
+
+\setcounter{theorem}{5}
+\begin{theorem}
+\begin{proof}\mbox{}
+
+$\Rightarrow:$ Since a metric space is $C_1$.
+\end{proof}
+\end{theorem}
+%\setcounter{definition}{3}
+%\begin{definition}[Continued]
+%We revise the condition as $(X,d)$ is a metric space and has the property that every sequence has a convergent subsequence. We show that $L>0$ and has the property that $B(x,r)\subseteq U_{i(x)},\forall x,\forall r<L$
+%\begin{proof}
+%We already know that $\varphi(x)>0,\forall x$. By \textbf{Lemma 5} the minimum on $X$ is achievable by the continuous function $\varphi$. Therefore $L=\varphi(x_0)>0$. Since $r<\phi(x),\forall x\Rightarrow \exists i(x),\,s.t. r<d(x,U^c_{i(x)}) \Rightarrow B(x,r)\subseteq U_{i(x)}$. Therefore $L$ is the supremum of such $r$. 
+%\end{proof}
+%\end{definition}
+\section{Compactness: properties}
+\setcounter{theorem}{9}
+\begin{theorem}[Continued]
+We show that a compact Hausdorff space $X$ is $T_4$.
+\begin{proof}
+Let $A,B$ be two closed set of $X$,
+$\forall x\in A$, since $X$ is $T_3$, we can find $V_x \ni x, V_y\supseteq B$ and $V_x\cap V_y=\emptyset$. $\displaystyle\bigcup_{x\in A}V_x$ is an open cover of $A$, since $X$ is compact, we can find a finite subcover $\bigcup_{i=1}^n V_{x_i}$ covering $A$, which is disjoint with open set $\bigcap_{i=1}^n V_{y_i}$ covering $B$. Therefore $X$ is $T_4$.
+\end{proof}
+\end{theorem}
+\section{Connectness}
+\setcounter{lemma}{18}
+\begin{lemma}\label{closedC}
+If $B$ is a connected subset of $X$, then $\bar{B}$ is also connected.
+\begin{proof}
+Assume $\bar{B} = B_1 \dot\bigcup B_2,B_1$ and $B_2$ are open. $B = (B\cap B_1)\dot\bigcup (B\cap B_2)$, since $B$ is connected, either $B\cap B_1$ or
+$B\cap B_2$ is empty. Suppose $B\cap B_1$ is empty, since $B\subseteq B_1\cup B_2$, $B\subseteq B_2$. $\exists x\in B_1\subseteq \bar{B}$. $x$ is an       
+accumulated point of $B$. But $B_1$ is an open set containing $x$ and is disjoint with $B$, a contradiction.
+
+\end{proof}
+\end{lemma}
+\setcounter{lemma}{21}
+\begin{lemma}
+Connected component of $X$ is closed.
+\begin{proof}
+Since $A$ is a connected component of $X$, by \textbf{Lemma \ref{closedC}} $\bar{A}$ is connected. $\bar{A}\subseteq A$, and by the definition of connected component, $\bar{A}=A$. Therefore $A$ is closed.
+\end{proof}
+\end{lemma}
+\setcounter{example}{22}
+\begin{example}[Continued]
+If $X$ has only finitely many connecte components, then each component $A$ is both closed and open.
+\begin{proof}
+Let $X=\displaystyle\bigcup_{i=1}^n A_i$, then $A_i=(X\backslash A_i)^c = \displaystyle\bigcap_{\substack{j=1\\j\neq i}}^{n} A_j^c $
+\end{proof}
+\end{example}
+\setcounter{lemma}{24}
+\begin{lemma}
+If $f: X \to Y$ is continuous and $X$ is path-connected, then $f(X)$ is also path-connected.
+\begin{proof}
+For any two points $x,y\in f(X)$, $f^{-1}(x),f^{-1}(y)\in X$(choose one if having multiple preimage). Then there exists a continuous curve $g:[0,1]\to X,g(0)=f^{-1}(x),g(1)=f^{-1}(y)$. $f\circ g$ is a continuous mapping from $[0,1]$ to $Y$, with $(f\circ g)(0)= x, (f\circ g)(1)=y$. Therefore $f(X)$ is path-connected.
+\end{proof}
+\end{lemma}
+\begin{lemma}[Another Proof]
+\begin{proof}
+Assume $X=U_1 \dot\bigcup U_2,U_1$ and $U_2$ are open. Since $U_1,U_2$ are not empty, we can find $x\in U_1,y \in U_2$. 
+Since $X$ is path-connected, we can find a continuous mapping from $[0,1]$ to $X$ such that $f(0)=x,f(1)=y$. Then
+$[0,1]=f^{-1}(U_1 \cap f([0,1])) \dot\bigcup f^{-1}(U_2 \cap f([0,1])) $, a contradiction.
+\end{proof}
+\end{lemma}
+\end{document}

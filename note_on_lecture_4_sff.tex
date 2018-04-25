@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{esdiff}
+\usepackage{amssymb,amsmath,amsthm}
+\begin{document}
+Let $p$ be a point of a surface $S$ with tangent plane $T_p S$. Suppose that $\Pi$ is a plane passing $p$ and orthogonal to $T_pS$ with $\gamma = \Pi \cap S$ (called a normal section). Prove that the geodesic curvature $k_g(p)$
+of $\gamma$ at $p$ is zero. 
+\begin{proof}
+Since $\Pi \perp T_p S, \overrightarrow{n} \perp T_p S$, and the curve $\gamma \subseteq \Pi$. Then $\gamma',\overrightarrow{n}$ at point $p$ is an orthognal basis of the plane $\Pi$. Since $\gamma$ is a planar curve,
+$\gamma''$ is the linear combination of $\gamma'$ and $\overrightarrow{n}$. We choose a unit-speed parametrization and $\gamma'' \perp \gamma'$. Then $\gamma''$ is parallel with $\overrightarrow{n}\Rightarrow k_g = \gamma''\circ(N\times \gamma')=0$  
+\end{proof}
+\quad\\
+
+Suppose the surface $\Sigma$ contains a straight line $\ell$,  show that for any point $p \in \ell$, the Gaussian curvature $K(p)\leq 0$
+\begin{proof}
+The normal curvature $k_n$ for the straight line is zero. While $k_n$ is between $k_1$ and $k_2$, we have $K(p)=k_1k_2\leq 0$.
+\end{proof}
+
+\end{document}
+
+

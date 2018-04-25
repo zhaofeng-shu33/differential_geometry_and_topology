@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage[thehwcnt=1]{iidef}
+%\usepackage[left=2cm,right=2cm]{geometry}%for printing,broken for fancyhdr?
+\usepackage{mathtools}
+\usepackage{esdiff}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclareMathOperator\sgn{sgn}
+\thecourseinstitute{HIT,Shenzhen}%Harbin Institute of Technology
+\thecoursename{Differential Geometry and Topology}
+\theterm{Spring 2018}
+\begin{document}
+\courseheader
+\name{zhaofeng-shu33}
+\begin{enumerate}
+\item Show that the signed curvature $k_s$ of any regular planar curve $\gamma(t)$ is smooth. Use this to prove that the curvature $k(t)$ is smooth if $k(t)>0$ for any $t$. Give an example to show that $k(t)$ may not be smooth if $k(t)=0$ for some $t$.
+\begin{proof}
+Without loss of generality, we assume $\gamma(t)$ is unit-speed, otherwise by reparametrization (which is smooth transformation) we can get a unit-speed representation of the curve.
+Since $\gamma''(t) = k_s N \Rightarrow k_s = \gamma''(t) \cdot N \Rightarrow k_s $ is smooth.
+
+$k=\abs{k_s}$, if $k(t)>0$, then $k_s$ can not change sign by continuity.$\Rightarrow k(t)=-k_s(t)\forall t$ or $k(t)=k_s(t)\forall t$ and $k$ is smooth.
+
+Counterexample: Let $\gamma(t):(t,t^3)\Rightarrow k(t)=\frac{6\abs{t}}{(1+9t^4)^{3/2}}$. Since \textit{abs} function is not smooth at $t=0$, $k(t)$ is not smooth.
+\end{proof}
+\item Describe all curves in $\mathbb{R}^3$ which have \textit{constant} curvature $\kappa>0$ and \textit{constant} torsion $\tau$
+\begin{solution}
+Let $\gamma(t) = (a\cos t, b\sin t, bt)$, which is circular helix. We know that $\kappa = \frac{\abs{a}}{a^2+b^2}$ and $\tau = \frac{b}{a^2+b^2}$, which gives $ \abs{a}=\frac{\kappa}{\kappa^2+\tau^2},b=\frac{\tau}{\kappa^2+\tau^2}$, by the fundamental theorem of curves, all curves with constant curvature $\kappa>0$ and constant torsion $\tau$ can be obtained by translating and rotating the helix with parameter $a,b$.
+\end{solution}
+\newpage
+\item Let $\gamma(t)$ be a regular plane curve and let $\lambda$ be a constant. The \textit{parallel curve} $\gamma^{\lambda}$ of $\gamma$ is defined by
+\begin{equation}
+\gamma^{\lambda}(t) = \gamma(t) + \lambda \bm{n}_s (t)
+\end{equation}
+Show that, if $\lambda \kappa_s(t) \neq 1 $ for all values of $t$, then $\gamma^{\lambda}$ is a regular curve and that its signed curvature is 
+$\frac{\kappa_s}{\abs{1-\lambda \kappa_s}}$.
+\begin{proof}
+Let $T$ be the tangent vector of $\gamma$, $\bm{n}_s$ the vector obtained by rotating $\bm{n}_t$ anti-clockwise $90^\circ$.
+Also $\tilde{T}$ be the tangent vector of $\gamma^{\lambda}$ and $\tilde{\bm{n}}_s$ is obtained from $\tilde{T}$. For curve $\gamma^{\lambda}$, we choose the arc length parameter $\tilde{s} =\int_{t_0}^t \norm{\gamma(v)}dv \Rightarrow \diff{s}{t}=\abs{1-\lambda\kappa_s}\norm{\gamma'(t)}$, and the arc length parameter for $\gamma$ is denoted by $s$, then we have $\tilde{s}(t)=\abs{1-\lambda\kappa_s(t)}s(t)$.
+\begin{align*}
+\diff{\gamma^{\lambda}(t)}{t} & = \gamma'(t) +\lambda \diff{\bm{n}_s (t)}{t}  =   \gamma'(t) + \lambda \diff{\bm{n}_s}{s}\diff{s}{t}\\
+& =\gamma'(t) - \lambda \kappa_s \diff{s}{t} T = (1-\lambda \kappa_s)\diff{\gamma}{s} \diff{s}{t}\\
+& = (1-\lambda\kappa_s)\gamma'(t) \neq 0
+\end{align*}
+Hence $\gamma^{\lambda}$ is regular.
+$$
+\tilde{T}=\diff{\gamma^{\lambda}}{\tilde{s}}=\frac{\diff{\gamma^{\lambda}(t)}{t}}{\abs{1-\lambda \kappa_s}\diff{s}{t}}=\sgn\{1-\lambda\kappa_s\}\frac{\gamma'(t)}{\norm{\gamma'(t)}}
+$$
+Similarly we can show that $T=\frac{\gamma'(t)}{\norm{\gamma'(t)}}\Rightarrow \tilde{\bm{n}}_s=\sgn\{1-\lambda \kappa_s\}\bm{n}_s$
+$$
+\diff{\tilde{T}}{\tilde{s}}=\frac{\diff{\tilde{T}}{t}}{\abs{1-\lambda \kappa_s}\diff{s}{t}}
+$$
+Since $\kappa_s(t)$ is continuous and $\lambda \kappa_s(t)\neq 1$ , $1-\lambda \kappa_s(t)$ has constant sign. therefore 
+$\diff{\tilde{T}}{t} =\sgn\{1-\lambda\kappa_s\} \diff{T}{t} \Rightarrow \diff{\tilde{T}}{s} =\frac{\sgn\{1-\lambda\kappa_s\}}{\abs{1-\lambda\kappa_s}}\diff{T}{s}$
+Let $\kappa_s$ be the signed curvature of $\gamma$ and $\tilde{\kappa}_s$ be the signed curvature of $\gamma^{\lambda}$.
+Then
+$$
+\tilde{\kappa}_s = \diff{\tilde{T}}{s}\cdot \tilde{\bm{n}}_s =\frac{\sgn^2\{1-\lambda\kappa_s\}}{\abs{1-\lambda\kappa_s}}\diff{T}{s} \cdot \bm{n}_s
+= \frac{1}{\abs{1-\lambda\kappa_s}}\kappa_s
+$$
+
+\end{proof}
+\item Another approach to the curvature of a unit-speed plane curve $\gamma$ at a point $\gamma(s_0)$ is to look for the 
+'best approximating circle' at this point. We can then \textit{define} the curvature of $\gamma$ to be the reciprocal of the radius of this circle.
+
+Carry out this programme by showing that the center of the circle which passes through three nearby points $\gamma(s_0)$ and $\gamma(s_0\pm \delta_s)$ on $
+\gamma$ approaches the point
+\begin{equation}\label{eq:center_of_circle}
+\bm{\epsilon}(s_0) = \gamma(s_0) + \frac{1}{\kappa_s(s_0)}\bm{n}_s(s_0)
+\end{equation}
+as $\delta_s$ tends to zero. The circle $\mathcal{C}$ with center $\bm{\epsilon}$ passing through $\gamma(s_0)$ is called the \textit{osculating circle} to $\gamma$ at the point $\gamma(s_0)$, and $\epsilon(s_0)$ is called the \textit{centre of curvature} of $\gamma$ at $\gamma(s_0)$. The radius of $\mathcal{C}$
+is $1/\abs{\kappa_s(s_0)}=1/\kappa(s_0)$, where $\kappa$ is the curvature of $\gamma$ - this is called the \textit{radius of curvature} of $\gamma$ at $\gamma(s_0)$.
+\begin{solution}
+The line segment bisector of $\gamma(s_0),\gamma(s_0+\delta_s)$ has the parametrized form ($t_1$ is the parameter): 
+$$
+\ell_1(t_1): \frac{1}{2}(\gamma(s_0)+\gamma(s_0+\delta_s)) + t_1 (\gamma(s_0+\delta_s)-\gamma(s_0))\begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix}
+$$
+Similary, the line segment bisector of $\gamma(s_0),\gamma(s_0-\delta_s)$ has the parametrized form ($t_2$ is the parameter): 
+$$
+\ell_2(t_2): \frac{1}{2}(\gamma(s_0)+\gamma(s_0-\delta_s)) + t_2 (\gamma(s_0-\delta_s)-\gamma(s_0))\begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix} 
+$$
+The intersection of $\ell_1(t_1)$ and $\ell_2(t_2)$ is the center of the approximating circle
+\end{solution}
+To simplify the notation, let $J=\begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix},a=\gamma(s_0+\delta_s)-\gamma(s_0),b=\gamma(s_0-\delta_s)-\gamma(s_0)$.
+The intersection point satisfies $\ell_1(t_1)=\ell_2(t_2) \Rightarrow \frac{1}{2}(a-b)=t_2bJ-t_1aJ$.
+Since $aJ$ is perpendicular with $a$ ($J$ is counterclockwise $90^\circ$ rotation matrix), dot product both sides by $a$. we can solve $t_2$ as:
+$t_2=\frac{(a-b)\cdot a}{2bJ\cdot a}$.
+Then the center of circle can be expressed by $a,b,J$ as:
+$$
+\bm{\epsilon}(s_0,\delta_s)=\gamma(s_0)+\frac{b}{2}+\frac{(a-b)\cdot a}{2bJ\cdot a} bJ
+$$
+Since $\delta_s$ is small, we can expand $a,b$ as:
+\begin{subequations}
+\begin{align}
+\label{eq:a}a & = \gamma'(s_0) \delta_s + \gamma''(s_0)\frac{\delta_s^2}{2} +o(\delta_s^2)\\
+\label{eq:b}b & = -\gamma'(s_0) \delta_s + \gamma''(s_0)\frac{\delta_s^2}{2} +o(\delta_s^2)
+\end{align}
+\end{subequations}
+By the definition of $\bm{n}_s,k_s$, we have $\bm{n}_s(s_0) =\gamma'(s_0)J,\gamma''(s_0)=\kappa_s \bm{n}_s(s_0)$, from \eqref{eq:b} we have
+\begin{equation}
+bJ = -\frac{k_s \delta_s^2}{2} \gamma'(s_0) -\frac{\delta_s}{k_s}\gamma''(s_0)+ o(\delta_s^2) 
+\end{equation}
+Since $\gamma'(s_0)$ is perpendicular with $\gamma''(s_0),2bJ\cdot a=-2\delta_s^3 \kappa_s + o(\delta_s^3)$ and $\frac{1}{2bJ\cdot a} =\frac{1}{-2\delta_s^3 \kappa_s}(1+o(1))$, also from $||\delta_s||=1$ we can compute $(a-b)\cdot a = 2\delta_s^2 + o(\delta_s^3)\Rightarrow \frac{(a-b)\cdot a }{2bJ\cdot a}bJ = \frac{\gamma''(s_0)}{\kappa^2_s}+o(1)$$\Rightarrow \bm{\epsilon}(s_0,\delta_s)=\gamma(s_0)+\frac{1}{\kappa_s(s_0)}\bm{n}_s(s_0)$. It follows that $\bm{\epsilon}(s_0)=\bm{\epsilon}(s_0,\delta_s)$ as $\delta_s\to 0$.
+
+\end{enumerate}
+\end{document}
+

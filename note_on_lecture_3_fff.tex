@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{esdiff}
+\usepackage{amssymb,amsmath,amsthm}
+\begin{document}
+Let $\phi$ be a continuous mapping from a closed interval $[a,b]$ to another closed interval. If $\phi$ is bijective, show that $\phi$ is monotonic.
+\begin{proof}
+Without loss of generality, we assume $\phi(a)<\phi(b)$ and show that $\phi$ is strickly increasing. That is, $\forall x_1<x_2\Rightarrow \phi(x_1)<\phi(x_2)$. We proceed by contradiction. Suppose $\exists x_1<x_2,\, s.t. \, \phi(x_1)\geq \phi(x_2)$. Since $\phi$ is injective, $\phi(x_1)>\phi(x_2)$ Discuss three cases:
+\begin{enumerate}
+\item $\phi(a)<\phi(x_2)$. Since $\phi(a)<\phi(x_2)<\phi(x_1)$, we can find $c\in (a,x_1)$ such that $\phi(c) = \phi(x_2)$.
+\item $\phi(b)>\phi(x_1)$. Since $\phi(x_2)<\phi(x_1)<\phi(b)$, we can find $c\in (x_2,b)$ such that $\phi(c) = \phi(x_1)$.
+\item $\phi(a)\geq \phi(x_2)$ and $\phi(b)\leq \phi(x_1)$. Since $\phi(x_2) < \phi(a) <\phi(b)<\phi(x_1)$, we can find $c\in (x_1,x_2)$ such that 
+$\phi(c) = \phi(a)$
+\end{enumerate} 
+Contradicted with that $\phi$ is injective.
+\end{proof}
+Let $f:S_1\to S_2$ be a smooth mapping between two surfaces.
+The tangent mapping $D_f: T_p S_1 \to t_{f(p)} S_2$ is defined  by:
+$v \in T_p$, $v=\gamma'(t),\gamma(t)=p,D_f\gamma'(t) =(f\circ \gamma)'(t)$
+Since $\gamma'(t)=\diff{\sigma(u(t),v(t))}{t}=\sigma_u u'(t)+\sigma_v v'(t)$
+$D_f\gamma'(t)=\diff{(f\circ \sigma)(u(t),v(t))}{t}=(f\circ \sigma)_u u'(t) + (f\circ \sigma)_v v'(t)$
+Let $D_f \sigma_u \triangleq (f\circ \sigma)_u,D_f \sigma_v \triangleq (f\circ \sigma)_v$
+We can rewrite the definition as:
+$v\in T_p,v=a \sigma_u + b \sigma_v,D_f v =a D_f \sigma_u + b D_f \sigma_v$
+\quad\\
+
+Let $S_1 = S^2 =\{(x,y,z)| x^2 + y^2 +z^2 = r^2\}$, the sphere and $S_2 = \{(x,y,z)| x^2 + y^2 = r^2\}$ the cylinder. Define
+\begin{align*}
+f & : S_1 \to S_2,\\
+(x,y,z) & \longmapsto \left( \frac{rx}{\sqrt{x^2 + y^2}}, \frac{ry}{\sqrt{x^2+y^2}},z \right)
+\end{align*}
+Show that $f$ is area-preserving.
+\begin{proof}
+Use spherical coordinate,for the sphere $x = r\cos u \cos v, y = r\cos u \sin v, z = r\sin u \Rightarrow EG-F^2 = r^2\cos^2 u$.
+Under the mapping $f$, for the cylinder, $x' = r\cos v, y' = r\sin v, z' = r\sin u \Rightarrow E'G'-F'^2 = r^2\cos^2 u$.
+Therefore, $f$ is area-preserving.   
+\end{proof}
+\end{document}
+

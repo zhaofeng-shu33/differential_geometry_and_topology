@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage[thehwcnt=3]{iidef}
+%\usepackage[left=2cm,right=2cm]{geometry}%for printing,broken for fancyhdr?
+\usepackage{mathtools}
+\usepackage{esdiff}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclareMathOperator\sgn{sgn}
+\def\emptyset{\varnothing}
+\thecourseinstitute{HIT,Shenzhen}%Harbin Institute of Technology
+\thecoursename{Differential Geometry and Topology}
+\theterm{Spring 2018}
+\begin{document}
+\courseheader
+\name{zhaofeng-shu33}
+\begin{enumerate}
+\item Show that applying an isometry of $\mathbb{R}^3$ does not change the first fundamental form. 
+What is the effect of a dilation (i.e. a map $\mathbb{R}^3 \to \mathbb{R}^3$ given by $x\to ax$
+for some constant a $\neq$ 0)?
+\begin{proof}
+An isometry in $\mathbb{R}^3$ has the form $f:x\to xP+a$. $(f\circ \sigma)_u =\sigma_u P,(f\circ \sigma)_v =\sigma_v P \Rightarrow E(f\circ\sigma) = \sigma_u PP^T\sigma_v^T =\sigma_u \sigma_v^T=E(\sigma)$. Similarly, $F,G$ are also unchanged under the isometry and the first fundamental form remains the same.
+\end{proof}
+\item Let $\gamma:(a,b) \to \mathbb{R}^3$ be a unit speed curve. The surface of tangent developable is given by
+$\sigma(u,v) = \gamma(u)+v\gamma'(u)$
+\begin{enumerate}[label=(\arabic*)]
+\item Compute the first fundamental form of $\sigma$; Show that the first fundamental form is independent of the torsion of $\gamma$;
+\item Show that the tangent developables of two curves $\gamma_1,\gamma_2$ are locally isometric if their curvature functions are the same;
+\item Show that the tangent developable $\sigma$ is locally isometric to a plane.
+\end{enumerate}
+\begin{proof}\mbox{}
+\begin{enumerate}[label=(\arabic*)]
+\item $\sigma_u = \gamma'(u)+v\gamma''(u),\sigma_v = \gamma'(u)$. Since $\gamma'_u \circ \gamma''_u =0$, the first fundamental form is $(1+v^2\kappa^2)du^2+2dudv+dv^2$, where $\kappa$ is the curvature of the curve. From this expression, we see that the first fundamental form is indepedent with the torsion $\tau$ of $\gamma$. 
+\item 
+\item We construct a planar curve with $\kappa(u)$ as curvature. By fundamental theorem of curves, it is possible. Then 
+\end{enumerate}
+\end{proof}
+\item Show that Enneper's surface 
+\begin{equation}
+\sigma(u,v)=(u-{u^3\over 3}+uv^2, v-{v^3 \over 3}+vu^2,u^2-v^2)
+\end{equation}
+is conformally parametrized.
+\begin{proof}
+$\sigma_u = (1- u^2+v^2,2uv,2u), \sigma_v = (2uv,1-v^2+u^2,-2v)$.
+The first fundamental form is $(1+u^2+v^2)^2 (du^2+dv^2)$, which is proportional to the first fundamental form of plane. Therefore, the surface is conformally parametrized.
+\end{proof}
+\end{enumerate}
+\end{document}
+

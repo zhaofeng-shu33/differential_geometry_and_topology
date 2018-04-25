@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\inner{\langle}{\rangle}
+\def\emptyset{\varnothing}
+\def\QEDclosed{\mbox{\rule[0pt]{1.3ex}{1.3ex}}}%hacked from IEEEtran.cls
+\def\proofname{\normalfont \bfseries Proof}
+\renewcommand\qedsymbol{\QEDclosed}
+% resolve formula numbering
+% all styles are plain, which is not optimal
+% the official amsthm doc said we should use <definition> style for Definition,Example and Exercise.
+\newtheorem{example}{Example}[section] % parent counter setting
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{remark}{Remark}[section]
+\usepackage{xpatch}%remove the dot after theorem env
+\makeatletter
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+\begin{document}
+% 
+\title{Lecture 1 remark: Basic concepts of topological spaces}
+\author{zhaofeng-shu33}
+\maketitle
+\section{Topological space: concepts and examples}
+\setcounter{definition}{-1}
+\begin{definition}
+Let $X$ be a non-empty set. The power set of $X$, denoted as $2^{X}$ is $\{Y|Y\subseteq X\}$
+\end{definition}
+\setcounter{example}{-1}
+\begin{example}
+$X=\{1,2\},2^X=\{\{1\},\{2\},\{1,2\},\emptyset\}$
+\end{example}
+\begin{example}[Euclidean topology in $\mathbb{R}$]
+Let $X=\mathbb{R},T=\{U| U=\bigcup_{i\in I}(a_i,b_i)\}$
+\end{example}
+\setcounter{example}{3}
+\begin{example}[\href{https://en.wikipedia.org/wiki/Cocountable}{Cocountable}]
+$X=\mathbb{R},T=\{\mathbb{R}\backslash Y| Y \textrm{is a countable set in }\mathbb{R} \}\cup \emptyset$
+\begin{proof}
+
+
+We verify that $T$ is a topological space.
+\begin{enumerate}
+\item $X,\emptyset \in T$
+\item For $\mathbb{R}\backslash Y_1\in T,\mathbb{R}\backslash Y_2\in T$, wher $Y_1,Y_2$ are countable set, their intersection
+$(\mathbb{R}\backslash Y_1 )\cap (\mathbb{R}\backslash Y_2)=\mathbb{R}\backslash(Y_1\cup Y_2)$. Since $Y_1\cup Y_2$ is countable,
+$\mathbb{R}\backslash(Y_1\cup Y_2)\in T$
+\item For $\mathbb{R}\backslash Y_i\in T$, since $\bigcap Y_i$ is countable, 
+$\bigcup(\mathbb{R}\backslash Y_i\in T)= \mathbb{R}\backslash(\bigcap Y_i) \in T$
+\end{enumerate}
+\end{proof}
+\begin{example}[\href{https://en.wikipedia.org/wiki/Cofiniteness}{Cofiniteness}]
+$X=\mathbb{R},T=\{\mathbb{R}\backslash Y| Y \textrm{is a finite set in }\mathbb{R} \}\cup \emptyset$
+\end{example}
+\end{example}
+\setcounter{example}{5}
+\begin{example}
+\begin{proof}
+We show that $d(f,g)\triangleq \norm{f-g}$ is a distance function.
+(1,2) in \textbf{Definition 1.4} are obvious. to show (3), we have
+\begin{align*}
+\abs{f(x)-h(x)} & \leq  \abs{f(x)-g(x)}+\abs{g(x)-h(x)}  \\
+& \leq \max_{x\in[a,b]}\abs{f(x)-g(x)} + \max_{x\in[a,b]}\abs{g(x)-h(x)} \\
+ \Rightarrow \max_{x\in[a,b]}\abs{f(x)-h(x)}& \leq \max_{x\in[a,b]}\abs{f(x)-g(x)} + \max_{x\in[a,b]}\abs{g(x)-h(x)}
+\end{align*}
+That is, $d(f,h)\leq d(f,g)+d(g,h)$ 
+\end{proof}
+\end{example}
+\begin{example}
+Let $Y \subseteq \mathbb{R}^n,d_E$ is the Euclid norm defined in \textnormal{\textbf{Example 1.5}}. Then $(Y,d_E)$ is also a metric space, called induced metric space.
+\end{example}
+\setcounter{exercise}{9}
+\begin{exercise}
+\begin{proof}
+\quad\\
+\indent $\Rightarrow:$ if $x\in A$, then $U \cap A \neq \emptyset$. Otherwise $x\in A'$, by the definition of accumulated point, $ U \cap A \neq \emptyset$.
+
+$\Leftarrow:$ if $x\in A$, then $x\in \bar{A}$. Otherwise, for any neightborhood $U$ of $x$. Since $U\cap A\neq \emptyset$ and $x\notin A$, $U$ contains a point in  $A\backslash \{x\}$. Therefore, $x\in A'\subseteq \bar{A}$
+
+Below we show that $\bar{A}$ is closed. 
+
+By the above conclusion,$\forall x\notin \bar{A}$, there exists a neighborhood $U$ of $x$ such that $U\cap A = \emptyset$. By the definiton of $A',U\cap A' 
+= \emptyset$. Therefore $U\cap \bar{A}=\emptyset$. Then $x$ is an interior point of $\bar{A}^c \Rightarrow \bar{A}^c$ is open $\Rightarrow \bar{A}$ is closed.
+\end{proof}
+\end{exercise}
+\section{Continuous functions}
+\setcounter{lemma}{1}
+\begin{lemma}
+(4) $f$ is continuous at every point.
+\begin{proof}\mbox{}
+
+(2)$\Rightarrow$ (3): if $C_Y$ is closed in $Y$, $C_Y^c$ is open in $Y$. $[f^{-1}(C_Y)]^{c}=f^{-1}(C_Y^c)$ is open by (2). Therefore $f^{-1}(C_Y)$ is closed.
+
+(4)$\Rightarrow$ (1): Let $U_Y$ be an open set in $Y$, $y \in f^{-1}(U_Y)$. Since $f$ is continuous at $y$ and $U_Y$ is an open neighborhood of $f(y)$, by pointwise continuous definition $f^{-1}(U_Y)$ is an open set.
+\end{proof}
+\end{lemma}
+\setcounter{example}{2}
+\begin{example}\label{eg:23}
+$X=(0,2\pi)\subseteq (\mathbb{R},d),Y=\{z\in \mathbb{C}|\norm{z}=1\}\subseteq \mathbb{C}=(\mathbb{R}^2,d)$. Let $f: X\to Y$ such that $f(t)=e^{it}$.
+By geometric intuition $f$ is continuous (The interval $(2\pi-\epsilon,2\pi]$ is open in $X$). However, the inverse function $f^{-1}: Y\to X$ is not continuous.
+The preimage of interval $(2\pi-\epsilon,2\pi]$ is mapped to a circular arc with the point $(1,0)$, which is not open in $Y$.
+\end{example}
+\setcounter{lemma}{3}
+\begin{lemma}
+\begin{proof}
+For an open set $U_Z$ in $Z$, $g^{-1}(U_Z)$ is open in $Y$ since $g$ is continuous. $ f^{-1} \circ g^{-1}(U_Z)$ is open in $X$ since $f$ is continuous.
+ $(g\circ f)^{-1}(U_Z)=f^{-1} \circ g^{-1}(U_Z)$ for any $U_Z$, hence $g\circ f$ is continuous.
+\end{proof}
+\end{lemma}
+\setcounter{example}{4}
+\begin{example}
+Let $X=(\mathbb{R},d),x_i\to x$ iff $\forall \epsilon >0, \exists N,s.t.\, \forall n>N,\abs{x_n-x}<\epsilon$
+\begin{proof}
+\quad\\
+\indent$\Rightarrow \forall \epsilon>0$, choose $V=(x-\epsilon,x+\epsilon)$, since $x_i\to x, \exists N,s.t. \forall n>N, x_n \in V$. That is,
+$\abs{x_n-x}<\epsilon$.
+
+$\Leftarrow \forall V \ni x$, since $V$ is open, $V=\bigcup_{i\in I} (x_i-\epsilon,x_i+\epsilon)$. Then $\exists i_0 \in I,s.t. \,x\in (x_{i_0}-\epsilon_{i_0},x_{i_0}+\epsilon_{i_0})$. Choose $\epsilon = \epsilon_{i_0}-\abs{x-x_{i_0}}$, then $(x-\epsilon,x+\epsilon)\subseteq (x_{i_0}-\epsilon_{i_0},x_{i_0}+\epsilon_{i_0})$. For the chosen $\epsilon,\exists N,.s.t.\, \forall n>N, x_n \in (x-\epsilon,x+\epsilon)\subseteq V$. Therefore $x_i\to x$.
+\end{proof}
+\end{example}
+\begin{example}[\textnormal{\textbf{Example \ref{eg:23}}} continued]
+%\Re is defined by Knuth as fraktur.
+We can use \textnormal{\textbf{Corollary 2.6}} to show that $f^{-1}$ is not continuous. Construct $x_i \to x=(1,0)$, such that $\operatorname{Re}[x_{2n}]<0,\operatorname{Re}[x_{2n+1}]>0$. Then $f^{-1}(x_{2n})\to 2\pi,f^{-1}(x_{2n+1})\to 0\Rightarrow f^{-1}(x_n)$ is not convergent. 
+\end{example}
+\begin{example}
+We show that if $x_n\to x$ in the topology $T$, then $x = x_n$ for sufficiently large $n$.
+\begin{proof}
+We proceed by contradiction. Suppose there exists $\{x_{n_k}\}, s.t.\, n_k\to \infty$ but $x_{n_k}\neq x$. Then we construct $V=X\backslash\{x_{n_k}\}_{k=1}^{\infty}\in T$. Obviously, $x\in V$, but by the definition of convergence, $x_n \nrightarrow x$
+\end{proof}
+\end{example}
+\section{Homeomorphism}
+\setcounter{example}{1}
+\begin{example}
+$f: x\to \tan(\frac{\pi}{2} \frac{2x-a-b}{b-a})$ maps $(a,b)$ to $\mathbb{R}$.
+
+\normalfont
+We can extend this result to map the unit disk in $\mathbb{R}^2$ to the whose plane by $(r,\theta)\to (\tan(\frac{\pi}{2}r),\theta)$ (in polar coordinate).
+\end{example}
+% this lemma is from differential geometry, it is a mistake
+%\setcounter{lemma}{2}
+%\begin{lemma}
+%For any isometry $f: \mathbb{R}^n \to \mathbb{R}^n$, there exists an orthogonal matrix $P$ and a point $a\in \mathbb{R}^n$ such that $f(x)=xP+a,\forall x\in \mathbb{R}^n$
+%\begin{proof}
+%Let $a=f(0)$, and consider $\bar{f}=f-a$, which maps the origin to itself. $\norm{\bar{f}(x)}=\norm{\bar{f}(x)-\bar{f}(0)}=d(\bar{f}(x),\bar{f}(0))=d(x,0)
+%=\norm{x}$. $\forall x,y\in \mathbb{R}^n, \inner{\bar{f}(x),\bar{f}(y)}={1\over 2}(\norm{\bar{f}(x)+\bar{f}(y)}^2-\norm{\bar{f}(x)}^2-\norm{\bar{f}(y)}%^2)={1\over 2}(\norm{x+y}^2-\norm{x}^2-\norm{y}^2)=\inner{x,y}$. That is ,preserving the length $\Rightarrow$ prserving the inner product.
+%Let $e_i$ be the i-th standard orthogonal basis of $\mathbb{R}^n$. Then $\inner{\bar{f}(e_i),\bar{f}(e_j)}=\inner{e_i,e_j}=\delta_{ij}$.
+%Then construct $P=\begin{pmatrix}\bar{f}(e_1)\\ \dots \\ \bar{f}(e_n)\end{pmatrix}$, which is an orthogonal matrix.
+%We already know that $\bar{f}(e_i)=e_i P,i=1,\dots,n$. To prove $\bar{f}(x)=xP,\forall x\in \mathbb{R}^n$
+%%slightly different from Prof's notes
+%$\norm{xP-e_iP}^2=\norm{x-e_i}^2=\norm{\bar{f}(x)-\bar{f}(e_i)}^2=\norm{\bar{f}(x)-e_iP}^2$, since $\norm{xP}=\norm{x}=\norm{\bar{f}(x)}$, we have
+%$\inner{xP,e_iP}=\inner{\bar{f}(x),e_iP}$. $e_iP,i=1,\dots,n$ is also an orthogonal basis and $xP-\bar{f}(x)$ is perpendicular to this basis.
+%Therefore $\inner{xP-\bar{f}(x),y}=0,\forall y\in \mathbb{R}^n \Rightarrow xP=\bar{f}(x)$
+%\end{proof}
+%\setcounter{remark}{2}
+%\begin{remark}
+%Let $\abs{P}$ be the determinant of $P$. If $\abs{P}=1$, the isometry is orientation-preserving; if $\abs{P}=-1$, the isometry is orientation-reversing.
+%\end{remark}
+%\end{lemma}
+\section{Construct new topologies: subs and products}
+\setcounter{example}{-1}
+\begin{example}
+Let $X=(\mathbb{R},d_E),Y=[0,1]$, then $T_Y=\{\bigcup_{i\in I} (a_i,b_i)\cap Y\}$.e.g. $[0,{1\over 2}]\in T_Y$
+\end{example}
+\begin{example}
+Let $(X,d)$ be a metric space, $Y\subseteq X$. Then $(Y,d)$ is a topological space with $T_Y^d = \{\bigcup B_Y(y_i,r_i)\}$, where $B_X(y_i,r_i)=\{x\in X|d(x,y_i)<r_i\}$ and $B_Y(y_i,r_i)=B_X(y_i,r_i)\cap Y = \{x\in Y|d(x,y_i)<r_i\}$.
+\end{example}
+\begin{example}
+\normalfont
+We show that $A$ is homeomorphic to $\mathbb{R}^2$ by the spherical representation of complex numbers. see \href{https://faculty.etsu.edu/gardnerr/5510/notes/I-6.pdf}{The Extended Plane and Its Spherical Representation} for detail.
+\end{example}
+\setcounter{remark}{2}
+\begin{remark}[on \normalfont{\textbf{Definition 4.3}}]
+The \href{https://en.wikipedia.org/wiki/Base_(topology)}{topology basis} $S$ of $X$ satisfies
+\begin{enumerate}
+\item $\forall V\in T, V=\bigcup S_i, S_i\in S$
+\item $\forall S_1,S_2 \in S, S_1\cap S_2 = \bigcup_{i\in I}S_i$
+\end{enumerate}
+\end{remark}
+\setcounter{lemma}{3}
+\begin{lemma}[\normalfont{\textbf{Proof.}} continued]
+\normalfont
+We also need to show that if $T$ is a topology containing $S$, then the right hand side set $\subseteq T$. Since $T$ is a topology space, $U_i\in S\subseteq X,\bigcup U_i\in T$. $\{U|U=\bigcup U_i,U_i\in S\}\subseteq T$,and the proof is complete.
+\end{lemma}
+
+\setcounter{exercise}{5}
+\setcounter{remark}{5}
+\begin{exercise}\label{ex:45}
+\begin{proof}
+$(U_1\times V_1)\cap (U_2 \times V_2) = (U_1\cap U_2)\times (V_1\times V_2)$. Since $U_1\cap U_2\in T_X, V_1\cap V_2 \in T_Y$, $(U_1\cap U_2)\times (V_1\times V_2) \in \{U\times V| U\in T_X,V\in T_Y\}$.
+\end{proof}
+\begin{remark}
+From \normalfont{Exercise \textbf{\ref{ex:45}}}, $\{U\times V| U\in T_X,V\in T_Y\}$ is a topology basis of the product topology on $U\times V$.
+\end{remark}
+\end{exercise}
+\setcounter{example}{5}
+\begin{example}
+Let $X=(\mathbb{R},d_E)$, $X\times X =(\mathbb{R}^2,T_p)$, where $T_p$ is the product topology on $\mathbb{R}^2$. Let $T_E$ be the metric topology on $\mathbb{R}^2$. Then $T_P=T_E$.
+\begin{proof}
+$T_E$ is the set of union of open ball in $\mathbb{R}^2$ and $T_p$ is the set of union of rectangle. 
+
+$T_E\subseteq T_p$: For $x\in B(x_i,r_i)$, we can find a rectangle such that $x\in (a(x),b(x))\times (c(x),d(x))\subseteq B(x_i,r_i)$. Therefore $B(x_i,r_i)=\bigcup_{x\in B(x_i,r_i)}(a(x),b(x))\times (c(x),d(x))$.
+
+$T_p\subseteq T_E$: $(a_i,b_i)\times (c_i,d_i)=\bigcup B(y_i,r_i)$
+\end{proof}
+\end{example}
+\setcounter{lemma}{6}
+\begin{lemma}
+\begin{proof}
+\quad\\
+\indent $\Rightarrow: f_1=P_1\circ f$, where $P_1:X_1\times X_2\to Y,P_1(x_1,x_2)=x_1$. For any open set $V\subseteq X, P_1^{-1}(V)=V\times X_2$ is open in the product topology of $X_1\times X_2$. Therefore $P_1$ is continuous and the composite function $f_1$ is continuous. Similarly, $f_2$ is continuous.
+
+$\Leftarrow:$ For any open set $V\in \inner{T_1\times T_2},V=\bigcup_{i\in I} V_i\times U_i,f^{-1}(V)=\bigcup_{i\in I}f^{-1}(V_i\times U_i)=\bigcup_{i\in I}f_1^{-1}(V_i)\times f_2^{-1}(U_i)$. Since $f_1,f_2$ are continuous and $V_i,U_i$ are open, $f_1^{-1}(V_i),f_2^{-1}(U_i)$ are open in $Y$. Then $f^{-1}(V)$ is open and $f$ is continuous. 
+\end{proof}
+\end{lemma}
+\end{document}
