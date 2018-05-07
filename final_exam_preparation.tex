@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[thehwcnt=]{iidef}
+\usepackage{exercisebank}
+\exercisebanksetup{exercise directory=exercisebank, 
+problem header={\normalfont\Large\bfseries{Exercise} \theproblemcounter}.,
+part problem header=\large\textbf{\theproblemcounter.\thepartproblemcounter}
+}
+\makeset{HW1}{HW1}
+\makeset{HW2}{HW2}
+\makeset{HW3}{HW3}
+\makeset{HW4}{HW4}
+\DisplaySolutions
+% include all the necessary packages to build problem
+\usepackage{bm}
+\usepackage{amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{esdiff}
+\usepackage{enumitem}
+
+% Useful macro definition
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclareMathOperator\sgn{sgn}
+\def\v#1{\overrightarrow{#1}}
+\def\emptyset{\varnothing}
+
+\thecourseinstitute{HIT,Shenzhen}%Harbin Institute of Technology
+\thecoursename{Differential Geometry and Topology}
+\theterm{Spring 2018}
+\hwname{Exercise Collection}
+\begin{document}
+\courseheader
+\name{zhaofeng-shu33}
+
+\buildset{HW1}
+\buildset{HW2}
+\buildset{HW3}
+\buildset{HW4}
+\end{document}
