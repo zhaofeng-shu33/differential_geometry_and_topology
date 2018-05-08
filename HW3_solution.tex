@@ -20,7 +20,12 @@
 What is the effect of a dilation (i.e. a map $\mathbb{R}^3 \to \mathbb{R}^3$ given by $x\to ax$
 for some constant a $\neq$ 0)?
 \begin{proof}
-An isometry in $\mathbb{R}^3$ has the form $f:x\to xP+a$. $(f\circ \sigma)_u =\sigma_u P,(f\circ \sigma)_v =\sigma_v P \Rightarrow E(f\circ\sigma) = \sigma_u PP^T\sigma_v^T =\sigma_u \sigma_v^T=E(\sigma)$. Similarly, $F,G$ are also unchanged under the isometry and the first fundamental form remains the same.
+An isometry in $\mathbb{R}^3$ has the form $f:x\to xP+a$. $(f\circ \sigma)_u =\sigma_u P,(f\circ \sigma)_v =\sigma_v P \Rightarrow 
+E(f\circ\sigma) = \sigma_u PP^T\sigma_u^T =\sigma_u \sigma_u^T=E(\sigma)$. Similarly, $F,G$ are also unchanged under the isometry and the first fundamental form remains the same.
+
+For dilation, $g: x\to ax$. $(g\circ \sigma)_u = a \sigma_u, (g\circ \sigma)_v = a \sigma_v \Rightarrow 
+E(g\circ \sigma) = a^2 \sigma_u \cdot \sigma_u = a^2 E(\sigma)$.
+Similarly, $F(g \circ \sigma) = a^2 F(\sigma), G(g\circ \sigma) = a^2 G(\sigma)$. If $ a = \pm 1$, the first fundamental form is unchanged; otherwise, it changes.
 \end{proof}
 \item Let $\gamma:(a,b) \to \mathbb{R}^3$ be a unit speed curve. The surface of tangent developable is given by
 $\sigma(u,v) = \gamma(u)+v\gamma'(u)$
@@ -32,8 +37,16 @@ $\sigma(u,v) = \gamma(u)+v\gamma'(u)$
 \begin{proof}\mbox{}
 \begin{enumerate}[label=(\arabic*)]
 \item $\sigma_u = \gamma'(u)+v\gamma''(u),\sigma_v = \gamma'(u)$. Since $\gamma'_u \circ \gamma''_u =0$, the first fundamental form is $(1+v^2\kappa^2)du^2+2dudv+dv^2$, where $\kappa$ is the curvature of the curve. From this expression, we see that the first fundamental form is indepedent with the torsion $\tau$ of $\gamma$. 
-\item 
-\item We construct a planar curve with $\kappa(u)$ as curvature. By fundamental theorem of curves, it is possible. Then 
+\item We further suppose both $\gamma_1, \gamma_2$ are regular. For $\sigma_1(u,v)$ on the tangent developable of $\gamma_1$, we map it to $\sigma_2(u,v)$ on the tangent developable of $\gamma_2$. 
+Since $\gamma_1'\neq 0$, we can find a neighborhood $N_1 = N(\sigma_1(u,v),\epsilon_1)\cap \sigma_1$, such that
+$\sigma_1^{-1}(N_1)$ and $N_1$ is one-to-one. 
+Similarly we can find $\sigma_2(u,v) \in N_2 \subseteq \sigma_2$ such that $\sigma_2^{-1}(N_2)$ and $N_2$ is one-to-one.
+Let $ K = \sigma_1^{-1}(N_1) \cap \sigma_2^{-1}(N_2)$, then $\sigma_1(K)$ and $\sigma_2(K)$ are one-to-one.
+Therefore, we construct a locally smooth mapping $f$ from $\sigma_1(K)$ to $\sigma_2(K)$ as  $\sigma_2 \circ \sigma_1^{-1}$. 
+The first fundamental form of $\sigma_1$ 
+and $f\circ \sigma_1$ are the same from (1). It follows that $f$ is isometric.
+\item By fundamental theorem of curves, it is possible to construct a planar curve with $\kappa(u)$ as curvature. From (2) $\sigma$ is locally
+isometric to a plane. 
 \end{enumerate}
 \end{proof}
 \item Show that Enneper's surface 

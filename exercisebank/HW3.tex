@@ -22,8 +22,15 @@ $\sigma(u,v) = \gamma(u)+v\gamma'(u)$
 \begin{proof}\mbox{}
 \begin{enumerate}[label=(\arabic*)]
 \item $\sigma_u = \gamma'(u)+v\gamma''(u),\sigma_v = \gamma'(u)$. Since $\gamma'_u \circ \gamma''_u =0$, the first fundamental form is $(1+v^2\kappa^2)du^2+2dudv+dv^2$, where $\kappa$ is the curvature of the curve. From this expression, we see that the first fundamental form is indepedent with the torsion $\tau$ of $\gamma$. 
-\item 
-\item We construct a planar curve with $\kappa(u)$ as curvature. By fundamental theorem of curves, it is possible. Then 
+\item We further suppose both $\gamma_1, \gamma_2$ are regular. For $\sigma_1(u,v)$ on the tangent developable of $\gamma_1$, we map it to $\sigma_2(u,v)$ on the tangent developable of $\gamma_2$. 
+Since $\gamma_1'\neq 0$, we can find a neighborhood $N_1 = N(\sigma_1(u,v),\epsilon_1)\cap \sigma_1$, such that
+$\sigma_1^{-1}(N_1)$ and $N_1$ is one-to-one. 
+Similarly we can find $\sigma_2(u,v) \in N_2 \subseteq \sigma_2$ such that $\sigma_2^{-1}(N_2)$ and $N_2$ is one-to-one.
+Let $ K = \sigma_1^{-1}(N_1) \cap \sigma_2^{-1}(N_2)$, then $\sigma_1(K)$ and $\sigma_2(K)$ are one-to-one.
+Therefore, we construct a locally smooth mapping $f$ from $\sigma_1$ to $\sigma_2$, the first fundamental form of $\sigma_1$ 
+and $f\circ \sigma_1$ are the same from (1). It follows that $f$ is isometric.
+\item By fundamental theorem of curves, it is possible to construct a planar curve with $\kappa(u)$ as curvature. From (2) $\sigma$ is locally
+isometric to a plane. 
 \end{enumerate}
 \end{proof}
 \end{solution}
